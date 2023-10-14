@@ -1,9 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 import Navbar from "@/components/home/Navbar";
 import FilterInput from "@/components/home/FilterInput";
+import SearchInput from "@/components/home/SearchInput";
+import JobList from "@/components/home/JobList";
+import RecommendedJobCard from "@/components/home/RecommendedJobCard";
 
 export default function Home() {
   return (
@@ -24,12 +28,7 @@ export default function Home() {
             </div>
           </Link>
 
-          <div className="mt-7">
-            <input
-              className="w-[min(400px,80vw)] bg-color-bg bg-[url('/assets/search-white.png')] bg-no-repeat bg-[0.75em_center] bg-[length:1em] ps-14 py-3 pe-2 text-2xl font-bold text-white outline-none border-b border-solid border-white rounded-full focus:shadow-[0_0_0_5px_rgba(255,75,66,0.5)]"
-              placeholder="your next job?"
-            />
-          </div>
+          <SearchInput />
         </div>
       </div>
 
@@ -49,13 +48,82 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="max-w-[1100px] mx-auto">
-        <div className="flex">
-          <FilterInput placeholder="🔍 Search" inputType="text" />
-          <FilterInput placeholder="🌏 Location" inputType="text" />
-          <FilterInput placeholder="💵 Salary" />
-          <FilterInput placeholder="🎪 Benefits" />
+      <section className="max-w-[1100px] overflow-x-auto mx-auto">
+        <div className="flex items-start">
+          <div className="my-2 ms-2 relative w-[75px] cursor-cell">
+            <div className="bg-black w-10 py-2 px-[2px] aspect-square rounded-full hover:opacity-50">
+              <span className="font-pacifico me-1">r</span>
+              <span className="border-s border-white text-xs font-bold ps-1 leading-[10px]">
+                OK
+              </span>
+            </div>
+            <div className="absolute top-[6px] pointer-events-none right-2 p-2 rounded-full">
+              <div className="w-[14px] aspect-square bg-[url('/assets/chevron-down.svg')] bg-cover bg-[0_0] bg-no-repeat invert"></div>
+            </div>
+          </div>
+          <div>
+            <FilterInput placeholder="🔍 Search" inputType="text" />
+          </div>
+          <div>
+            <FilterInput placeholder="🌏 Location" inputType="text" />
+          </div>
+          <div>
+            <FilterInput placeholder="💵 Salary" />
+          </div>
+          <div>
+            <FilterInput placeholder="🎪 Benefits" />
+          </div>
+          <div className="ms-auto">
+            <FilterInput placeholder="🦴 Sort by" />
+          </div>
         </div>
+        <div className="flex items-start">
+          {[
+            "☕ Java",
+            "🧔 Assistant",
+            "💻 Engineer",
+            "🈸 Software",
+            "👵 Senior",
+          ].map((job, i) => (
+            <RecommendedJobCard key={i} text={job} />
+          ))}
+          <div className="border border-red-500 text-red-500 rounded-[32px] m-2 p-2 pt-[10px] font-extrabold cursor-zoom-out">
+            ❌ Clear 20+ results
+          </div>
+        </div>
+      </section>
+
+      <section className="max-w-[1100px] mx-auto">
+        <Link
+          href="https://safetywing.com/nomad-health?referenceID=24730000"
+          target="_blank"
+          className="bg-teal-300 h-[88px] mt-1 sm:mx-2 sm:rounded-xl flex items-center cursor-pointer hover:opacity-80 transition-all ease-linear"
+        >
+          <div className="p-4 md:pe-2">
+            <Image
+              src="/assets/safetywing.png"
+              alt="safetyLogo"
+              className="w-16 aspect-square object-cover bg-cyan-900 rounded-full"
+              width={60}
+              height={60}
+            />
+          </div>
+          <div className="max-w-sm">
+            <div className="text-[clamp(14px,6vw,17px)] font-extrabold">
+              Nomad Health by SafetyWing
+            </div>
+            <div>Global health coverage for remote workers and nomads</div>
+          </div>
+          <div className="ms-auto p-4 hidden md:block">
+            <button className="bg-white text-black rounded-xl py-3 px-7 font-extrabold">
+              Sign up today
+            </button>
+          </div>
+        </Link>
+      </section>
+
+      <section className="max-w-[1100px] mx-auto">
+        <JobList />
       </section>
     </>
   );

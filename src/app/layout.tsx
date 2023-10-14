@@ -2,7 +2,9 @@ import "@/styles/globals.css";
 import type { Metadata } from "next";
 
 import { nunito, pacifico } from "@/app/fonts";
-import AuthProvider from "./context/AuthProvider";
+import AuthProvider from "../context/AuthProvider";
+
+import SubscribeAlertBar from "@/components/home/SubscribeAlertBar";
 
 export const metadata: Metadata = {
   title: "RemoteOkClone",
@@ -18,7 +20,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${nunito.className} ${pacifico.variable} bg-color-bg`}>
         <AuthProvider>
-          <main className="min-h-screen">{children}</main>
+          <main className="relative min-h-screen">
+            {children}
+            <SubscribeAlertBar />
+          </main>
         </AuthProvider>
       </body>
     </html>
