@@ -1,5 +1,7 @@
-import CommonNavbar from "@/components/common/CommonNavbar";
+import React from "react";
 import Link from "next/link";
+
+import CommonNavbar from "@/components/common/CommonNavbar";
 
 const Login = () => {
   return (
@@ -9,7 +11,7 @@ const Login = () => {
       </div>
 
       <div className="min-h-screen flex justify-center items-center">
-        <div className="bg-color-bg p-7 rounded-xl border border-stone-700 border-solid w-[min(450px,100%)] text-center">
+        <div className="bg-color-bg p-7 m-1 rounded-xl border border-stone-700 border-solid w-[min(450px,100%)] text-center">
           <div className="font-extrabold text-2xl text-stone-300">
             Continue your remote career on the{" "}
             <Link

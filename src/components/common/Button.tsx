@@ -1,3 +1,5 @@
+import React from "react";
+
 interface ButtonProps {
   text: string;
   bg_color?: string;
@@ -9,7 +11,8 @@ const Button = ({ text, bg_color, bg_color_hover }: ButtonProps) => {
     <button
       className={`px-5 py-4 text-xs ${bg_color || "bg-color-primary"} hover:${
         bg_color_hover || "bg-color-primary-hover"
-      } rounded`}>
+      } rounded`}
+    >
       {text}
     </button>
   );

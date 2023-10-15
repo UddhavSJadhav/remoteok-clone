@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 
 const SubscribeAlertBar = () => {
   const [isVisible, setIsVisible] = useState<boolean>(true);

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const RecommendedJobCard = ({ text }: { text: string }) => {
   const [isActive, setIsActive] = useState<boolean>(false);
