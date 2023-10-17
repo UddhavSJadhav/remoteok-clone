@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import CommonNavbar from "@/components/common/CommonNavbar";
+import CommonNavbar from "@/components/nav/CommonNavbar";
 
 const Login = () => {
   return (

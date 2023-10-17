@@ -1,11 +1,23 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
+
 import NavMenu from "./NavMenu";
+import NavMenuDropdown from "./NavMenuDropdown";
 
 const CommonNavbar = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const onNavMenuClick = () => setIsOpen(true);
+  const onNavClose = () => setIsOpen(false);
+
   return (
     <nav className="relative bg-transparent text-center px-1 py-3 flex items-center">
-      <NavMenu />
+      <NavMenu onClick={onNavMenuClick} onBlur={onNavClose} />
+      <div className="absolute z-10 w-[min(80vw,500px)] top-16">
+        {isOpen && <NavMenuDropdown />}
+      </div>
       <div className="flex mt-1 me-1 sm:me-3 ms-auto">
         <Link
           href="https://safetywing.com/nomad-health?referenceID=24730000"

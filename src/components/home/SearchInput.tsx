@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import DropDownList from "./DropDownList";
+import DropDownList from "./filter-bar/DropDownList";
 
 const SearchInput = () => {
   const jobSearchRef = useRef<HTMLInputElement>(null);

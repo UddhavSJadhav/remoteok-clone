@@ -5,11 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 import Navbar from "@/components/home/Navbar";
-import FilterInput from "@/components/home/FilterInput";
 import SearchInput from "@/components/home/SearchInput";
 import JobList from "@/components/home/JobList";
-import RecommendedJobCard from "@/components/home/RecommendedJobCard";
-import NavMenu from "@/components/common/NavMenu";
+import FilterBar from "@/components/home/filter-bar/FilterBar";
 
 export default function Home() {
   return (
@@ -50,40 +48,7 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="max-w-[1100px] overflow-x-auto mx-auto">
-        <div className="flex items-start">
-          <NavMenu />
-          <div>
-            <FilterInput placeholder="🔍 Search" inputType="text" />
-          </div>
-          <div>
-            <FilterInput placeholder="🌏 Location" inputType="text" />
-          </div>
-          <div>
-            <FilterInput placeholder="💵 Salary" />
-          </div>
-          <div>
-            <FilterInput placeholder="🎪 Benefits" />
-          </div>
-          <div className="ms-auto">
-            <FilterInput placeholder="🦴 Sort by" />
-          </div>
-        </div>
-        <div className="flex items-start">
-          {[
-            "☕ Java",
-            "🧔 Assistant",
-            "💻 Engineer",
-            "🈸 Software",
-            "👵 Senior",
-          ].map((job, i) => (
-            <RecommendedJobCard key={i} text={job} />
-          ))}
-          <div className="border border-red-500 text-red-500 rounded-[32px] m-2 p-2 pt-[10px] font-extrabold cursor-zoom-out">
-            ❌ Clear 20+ results
-          </div>
-        </div>
-      </section>
+      <FilterBar />
 
       <section className="max-w-[1100px] mx-auto">
         <Link
@@ -114,7 +79,7 @@ export default function Home() {
         </Link>
       </section>
 
-      <section className="max-w-[1100px] mx-auto">
+      <section className="max-w-[1100px] mx-auto mb-24">
         <JobList />
       </section>
     </>

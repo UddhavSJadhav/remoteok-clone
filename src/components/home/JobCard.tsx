@@ -28,6 +28,7 @@ const JobCard = ({ details }: { details?: JobData }) => {
     <Link
       href=""
       target="_blank"
+      rel="noopener noreferrer"
       style={{
         backgroundColor: details?.backgroundColor || "#2c2c2c",
         color: details?.textColor || "white",
@@ -57,8 +58,11 @@ const JobCard = ({ details }: { details?: JobData }) => {
           </span>
         </div>
       </div>
-      <div className="w-[20%] hidden lg:flex items-center font-bold">
-        <span className="bg-white hover:bg-transparent text-black hover:text-white border-2 border-white border-solid rounded-xl text-xs px-2 py-1 cursor-cell">
+      <div
+        className="w-[20%] hidden lg:flex items-center font-bold"
+        onClick={(e) => e.preventDefault()}
+      >
+        <span className="bg-white hover:bg-transparent text-black hover:text-white border-2 border-white border-solid rounded-xl text-xs px-2 py-1 cursor-cell transition-all ease-linear">
           Worldwide
         </span>
       </div>
