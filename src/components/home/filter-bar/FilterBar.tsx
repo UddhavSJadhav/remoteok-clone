@@ -2,48 +2,63 @@ import React, { useState, useRef } from "react";
 
 import FilterInput from "./FilterInput";
 import NavMenu from "../../nav/NavMenu";
-import RecommendedJobCard from "../RecommendedJobCard";
+import RecommendedJobCard from "./RecommendedJobCard";
 import DropDownList from "./DropDownList";
 import NavMenuDropdown from "../../nav/NavMenuDropdown";
 import SalarySlider from "./SalarySlider";
 
+import { orderByList } from "@/data";
+
+interface DropDownStyle {
+  top: string;
+  left: string;
+  right: string;
+  width?: string;
+}
+
 const FilterBar = () => {
   const dropdownRef = useRef<HTMLInputElement | null>(null);
-  const [dropdownStyle, setDropdownStyle] = useState<object>({
-    display: "none",
+  const [dropdownStyle, setDropdownStyle] = useState<DropDownStyle>({
     top: "45px",
+    left: "auto",
+    right: "auto",
   });
   const [dropdownType, setDropdownType] = useState<string>("");
 
   const closeDropdown = () => {
-    setTimeout(() => {
-      if (dropdownRef.current?.contains(document.activeElement)) return;
-      setDropdownStyle((prev) => ({ ...prev, display: "none" }));
-    }, 0);
+    if (dropdownRef.current?.contains(document.activeElement)) return;
+    setDropdownType("");
   };
 
   const onInputFieldClick = (e: any, type: string) => {
+    if (type === dropdownType) return;
     setDropdownType(type);
 
-    if (type !== "search" && type !== "location")
-      setTimeout(() => {
-        dropdownRef.current?.focus();
-      }, 100);
+    if (type !== "search" && type !== "location") dropdownRef.current?.focus();
+
+    const width =
+      type === "nav"
+        ? "min(80vw,500px)"
+        : type === "salary"
+        ? "min(80vw,250px)"
+        : type === "order_by"
+        ? "min(80vw,150px)"
+        : "min(80vw,400px)";
 
     if (type === "order_by") {
       if (window.innerWidth < 1100) {
         return setDropdownStyle((prev) => ({
           ...prev,
-          display: "block",
           right: "10px",
           left: "auto",
+          width,
         }));
       } else {
         return setDropdownStyle((prev) => ({
           ...prev,
-          display: "block",
-          right: (window.innerWidth - 1100) / 2,
+          right: `${(window.innerWidth - 1100) / 2}px`,
           left: "auto",
+          width,
         }));
       }
     }
@@ -56,17 +71,17 @@ const FilterBar = () => {
     ) {
       return setDropdownStyle((prev) => ({
         ...prev,
-        display: "block",
         right: "10px",
         left: "auto",
+        width,
       }));
     }
 
     setDropdownStyle((prev) => ({
       ...prev,
-      display: "block",
       left: left,
       right: "auto",
+      width,
     }));
   };
 
@@ -125,52 +140,28 @@ const FilterBar = () => {
           ].map((job, i) => (
             <RecommendedJobCard key={i} text={job} />
           ))}
-          <div className="whitespace-nowrap border border-red-500 text-red-500 rounded-[32px] m-2 p-2 pt-[10px] font-extrabold cursor-zoom-out">
+          <div className="user-select-none whitespace-nowrap border border-red-500 text-red-500 rounded-[32px] m-2 p-2 pt-[10px] font-extrabold cursor-zoom-out">
             ❌ Clear 20+ results
           </div>
         </div>
       </div>
-      {dropdownType === "nav" ? (
-        <div
-          className="absolute z-10 w-[min(80vw,500px)]"
-          style={dropdownStyle}
-          ref={dropdownRef}
-          onBlur={closeDropdown}
-          tabIndex={0}
-        >
+      <div
+        className="absolute z-10"
+        style={dropdownStyle}
+        ref={dropdownRef}
+        onBlur={closeDropdown}
+        tabIndex={0}
+      >
+        {dropdownType === "nav" ? (
           <NavMenuDropdown />
-        </div>
-      ) : dropdownType === "salary" ? (
-        <div
-          className="absolute z-10 w-[min(80vw,250px)]"
-          style={dropdownStyle}
-          ref={dropdownRef}
-          onBlur={closeDropdown}
-          tabIndex={0}
-        >
+        ) : dropdownType === "salary" ? (
           <SalarySlider />
-        </div>
-      ) : dropdownType === "order_by" ? (
-        <div
-          className="absolute z-10 w-[min(80vw,150px)]"
-          style={dropdownStyle}
-          ref={dropdownRef}
-          onBlur={closeDropdown}
-          tabIndex={0}
-        >
-          <DropDownList />
-        </div>
-      ) : (
-        <div
-          className="absolute z-10 w-[min(80vw,400px)]"
-          style={dropdownStyle}
-          ref={dropdownRef}
-          onBlur={closeDropdown}
-          tabIndex={0}
-        >
-          <DropDownList />
-        </div>
-      )}
+        ) : dropdownType === "order_by" ? (
+          <DropDownList list={orderByList} />
+        ) : dropdownType !== "" ? (
+          <DropDownList list={[]} />
+        ) : null}
+      </div>
     </section>
   );
 };

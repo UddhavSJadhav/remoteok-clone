@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { nunito, pacifico } from "@/app/fonts";
 import AuthProvider from "../context/AuthProvider";
 
-import SubscribeAlertBar from "@/components/home/SubscribeAlertBar";
+import SubscribeAlertBar from "@/components/main/SubscribeAlertBar";
 
 export const metadata: Metadata = {
   title: "RemoteOkClone",

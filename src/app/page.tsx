@@ -8,6 +8,7 @@ import Navbar from "@/components/home/Navbar";
 import SearchInput from "@/components/home/SearchInput";
 import JobList from "@/components/home/JobList";
 import FilterBar from "@/components/home/filter-bar/FilterBar";
+import CloneDetails from "@/components/main/CloneDetails";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
       <div className="h-[400px] bg-hero-pattern bg-[51%_38%]">
         <Navbar />
 
-        <div className="text-center text-5xl mt-8">
+        <div className="text-center text-5xl mt-8 user-select-none">
           <Link href="/" className="cursor-pointer hover:opacity-80">
             <div className="drop-shadow-2xl">
               find a{" "}
@@ -82,6 +83,8 @@ export default function Home() {
       <section className="max-w-[1100px] mx-auto mb-24">
         <JobList />
       </section>
+
+      <CloneDetails />
     </>
   );
 }

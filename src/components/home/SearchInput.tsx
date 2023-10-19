@@ -116,7 +116,7 @@ const SearchInput = () => {
       {isFocused && (
         <div className="absolute w-full z-10 -mt-1">
           <div className="w-[min(400px,80vw)] mx-auto">
-            <DropDownList />
+            <DropDownList list={[]} />
           </div>
         </div>
       )}

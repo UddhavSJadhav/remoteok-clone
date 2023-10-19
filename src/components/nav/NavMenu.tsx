@@ -16,7 +16,7 @@ const NavMenu = ({ onClick, onBlur = () => {} }: NavMenuProps) => {
       tabIndex={0}
     >
       <span>
-        <div className="bg-black w-10 py-2 px-[2px] aspect-square rounded-full hover:opacity-50">
+        <div className="user-select-none bg-black w-10 py-2 px-[2px] aspect-square rounded-full hover:opacity-50 active:shadow-[0_0_0_5px_rgba(255,75,66,0.5)]">
           <span className="font-pacifico me-1">r</span>
           <span className="border-s border-white text-xs font-bold ps-1 leading-[10px]">
             OK

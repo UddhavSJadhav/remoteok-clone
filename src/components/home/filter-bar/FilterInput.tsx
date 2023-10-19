@@ -19,9 +19,10 @@ const FilterInput = ({
     <div className="relative w-36 m-2 ms-0 rounded-full text-base font-extrabold cursor-cell">
       {inputType === "text" ? (
         <input
+          id={`filter-input-${id}`}
           type="text"
           placeholder={placeholder}
-          className="outline-none rounded-full shadow-[0_0_0_1px_rgba(255,255,255,0.3)] p-2 ps-4 w-full bg-color-bg hover:bg-color-bg-hover cursor-cell focus:cursor-auto focus:shadow-[0_0_0_5px_rgba(255,75,66,0.5)]"
+          className="outline-none rounded-full shadow-[0_0_0_1px_rgba(255,255,255,0.3)] p-2 ps-4 w-full bg-color-bg hover:bg-color-bg-hover cursor-cell focus:cursor-auto focus:shadow-[0_0_0_5px_rgba(255,75,66,0.5)] active:opacity-50"
           onFocus={(e) => {
             e.target.placeholder = "Type...";
           }}
@@ -33,7 +34,8 @@ const FilterInput = ({
         />
       ) : (
         <div
-          className="outline-none rounded-full shadow-[0_0_0_1px_rgba(255,255,255,0.3)] p-2 ps-4 w-full bg-color-bg hover:bg-color-bg-hover cursor-cell focus:cursor-auto focus:shadow-[0_0_0_5px_rgba(255,75,66,0.5)]"
+          id={`filter-input-${id}`}
+          className="user-select-none outline-none rounded-full shadow-[0_0_0_1px_rgba(255,255,255,0.3)] p-2 ps-4 w-full bg-color-bg hover:bg-color-bg-hover cursor-cell focus:cursor-auto focus:shadow-[0_0_0_5px_rgba(255,75,66,0.5)] active:opacity-50"
           onClick={(e) => onInputFieldClick(e, id)}
           onBlur={() => removeCoords()}
           tabIndex={0}

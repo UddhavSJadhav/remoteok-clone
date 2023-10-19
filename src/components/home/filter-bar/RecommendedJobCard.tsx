@@ -1,3 +1,4 @@
+import ToolTip from "@/components/common/ToolTip";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -6,7 +7,7 @@ const RecommendedJobCard = ({ text }: { text: string }) => {
 
   return (
     <div
-      className={`whitespace-nowrap m-2 rounded-full font-extrabold border-2 border-dashed border-[#30363d] p-2 opacity-50 [&.active]:opacity-100 hover:opacity-100 saturate-0 [&.active]:filter-none ${
+      className={`relative user-select-none whitespace-nowrap m-2 rounded-full font-extrabold border-2 border-dashed border-[#30363d] p-2 opacity-50 [&.active]:opacity-100 hover:opacity-100 saturate-0 [&.active]:filter-none ${
         isActive ? " active cursor-zoom-out" : " cursor-cell"
       }`}
       onClick={() => setIsActive((prev) => !prev)}
