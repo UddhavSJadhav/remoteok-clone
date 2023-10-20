@@ -107,7 +107,7 @@ const SearchInput = () => {
     <div className="mt-7 relative">
       <input
         type="text"
-        className="w-[min(400px,80vw)] bg-color-bg bg-[url('/assets/search-white.png')] bg-no-repeat bg-[0.75em_center] bg-[length:1em] ps-14 py-3 pe-4 text-2xl font-bold text-white outline-none border-b border-solid border-white rounded-full focus:shadow-[0_0_0_5px_rgba(255,75,66,0.5)]"
+        className="placeholder-white w-[min(400px,80vw)] bg-color-bg bg-[url('/assets/search-white.png')] bg-no-repeat bg-[0.75em_center] bg-[length:1em] ps-14 py-3 pe-4 text-2xl font-bold text-white outline-none border-b border-solid border-white rounded-full focus:shadow-[0_0_0_5px_rgba(255,75,66,0.5)]"
         placeholder="your next job?"
         ref={jobSearchRef}
         onFocus={() => setIsFocused(true)}

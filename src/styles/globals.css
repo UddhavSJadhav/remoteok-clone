@@ -11,6 +11,12 @@
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
   }
+
+  .appearance-unset {
+    -webkit-appearance: unset;
+    -moz-appearance: unset;
+    appearance: unset;
+  }
 }
 
 * {
@@ -73,11 +79,6 @@ body {
   100% {
     transform: rotate(360deg);
   }
-}
-
-input::placeholder {
-  color: #fff;
-  opacity: 1;
 }
 
 .custom-shape-divider-bottom-1696946936 {

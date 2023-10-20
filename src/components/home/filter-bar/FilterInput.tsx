@@ -22,7 +22,7 @@ const FilterInput = ({
           id={`filter-input-${id}`}
           type="text"
           placeholder={placeholder}
-          className="outline-none rounded-full shadow-[0_0_0_1px_rgba(255,255,255,0.3)] p-2 ps-4 w-full bg-color-bg hover:bg-color-bg-hover cursor-cell focus:cursor-auto focus:shadow-[0_0_0_5px_rgba(255,75,66,0.5)] active:opacity-50"
+          className="placeholder-white outline-none rounded-full shadow-[0_0_0_1px_rgba(255,255,255,0.3)] p-2 ps-4 w-full bg-color-bg hover:bg-color-bg-hover cursor-cell focus:cursor-auto focus:shadow-[0_0_0_5px_rgba(255,75,66,0.5)] active:opacity-50"
           onFocus={(e) => {
             e.target.placeholder = "Type...";
           }}

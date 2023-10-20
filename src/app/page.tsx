@@ -9,6 +9,7 @@ import SearchInput from "@/components/home/SearchInput";
 import JobList from "@/components/home/JobList";
 import FilterBar from "@/components/home/filter-bar/FilterBar";
 import CloneDetails from "@/components/main/CloneDetails";
+import SubscribeAlertBar from "@/components/main/SubscribeAlertBar";
 
 export default function Home() {
   return (
@@ -84,6 +85,7 @@ export default function Home() {
         <JobList />
       </section>
 
+      <SubscribeAlertBar />
       <CloneDetails />
     </>
   );
