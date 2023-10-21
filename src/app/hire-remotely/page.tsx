@@ -1,11 +1,13 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 
 import CustomInput from "@/components/common/CustomInput";
 import CustomSelect from "@/components/common/CustomSelect";
 import CustomCheckBox from "@/components/hire-remotely/CustomCheckBox";
 
 import { jobTypeList, primaryTagList } from "@/data";
+import CustomTextArea from "@/components/common/CustomTextArea";
 
 const HireRemotely = () => {
   return (
@@ -26,7 +28,7 @@ const HireRemotely = () => {
         </Link>
         <Link
           href="/buy-bundle"
-          className="p-2 font-extrabold rounded-xl text-white hover:text-red-500 bg-red-500 hover:bg-transparent border-2 border-solid border-red-500 hover:border-red-500 me-2 transition-all ease-linear"
+          className="block p-2 font-extrabold rounded-xl text-white hover:text-red-500 bg-red-500 hover:bg-transparent border-2 border-solid border-red-500 hover:border-red-500 me-2 transition-all ease-linear"
         >
           Buy a bundle →
         </Link>
@@ -239,22 +241,238 @@ const HireRemotely = () => {
             <div className="bg-color-bg text-[14px] uppercase font-extrabold px-2 absolute left-1/2 -translate-x-1/2 border border-solid border-stone-600 border-b-0 rounded-tr-md rounded-tl-md top-0 -mt-2">
               company
             </div>
+
+            <CustomInput
+              id="company_twitter"
+              label="company twitter"
+              placeholder="username"
+            />
+            <p className="text-xs opacity-60 mt-2 mb-6">
+              Twitter username without @. Not required, but used to tag your
+              company when we tweet out your job post.
+            </p>
+
+            <CustomInput
+              id="company_email"
+              label="company email"
+              mandatory={true}
+            />
+            <p className="text-xs opacity-60 mt-1 mb-4">
+              Make sure this email is accessible by you! We use this to send the
+              invoice and edit link. We can not and do not manually resend it!
+              If you use your company domain (same as company name), we will
+              show a [ Verified ] tag on your job post.
+            </p>
+
+            <CustomInput
+              id="invoice_email"
+              label="invoice email (stays private)"
+              mandatory={true}
+            />
+            <p className="text-xs opacity-60 mt-1 mb-4">
+              We send a copy of the invoice and edit link to here too. You can
+              write your finance department or accountant expenses email here so
+              they get a copy of the invoice for your bookkeeping.
+            </p>
+
+            <CustomTextArea
+              id="invoice_address"
+              label="invoice address"
+              mandatory={true}
+              placeholder="e.g. your company's full name and full invoice address, including building, street, city and country; also things like your VAT number, this is shown on the invoice."
+            />
+            <p className="text-xs opacity-60 mt-1 mb-4">
+              Specify your company address here and we&apos;ll put it on your
+              invoice for your bookkeeping. Be sure to [ Save changes ] in
+              bottom right after editing your invoice address. Then it&apos;ll
+              be instantly updated on the invoice.
+            </p>
+
+            <CustomInput
+              id="invoice_notes"
+              label="invoice notes / po number"
+              placeholder="e.g. PO number 1234"
+            />
+            <p className="text-xs opacity-60 mt-1 mb-4">
+              Not required. Add notes here that you&apos;d like to see on the
+              invoice/receipt such as a Purchase Order number or any other
+              internal notes you need for reference. You can add or edit this
+              later.
+            </p>
+
+            <div className="font-extrabold uppercase text-sm mb-2">
+              PAY LATER
+            </div>
+            <CustomCheckBox id="pay_later" label="I'd like to pay later" />
+            <p className="text-xs opacity-60 mt-1 mb-4">
+              Need to get approval for this payment? Or send the invoice to your
+              finance department first? No problem, we&apos;ll save your job
+              post and send you (and your finance department below) a payment
+              link. Once it&apos;s paid we immediately publish it!
+            </p>
           </div>
 
           <div className="relative bg-color-bg p-7 border border-solid border-stone-600 rounded-lg mt-7">
             <div className="bg-color-bg text-[14px] uppercase font-extrabold px-2 absolute left-1/2 -translate-x-1/2 border border-solid border-stone-600 border-b-0 rounded-tr-md rounded-tl-md top-0 -mt-2">
               feedback about remote ok
             </div>
+
+            <CustomTextArea id="feedback_box" label="feedback box" />
+            <p className="text-xs opacity-70 mt-1">
+              This isn&quot;t part of the job post. If you have any feature
+              requests or general feedback about posting a job Remote OK, leave
+              it here. Please be radically honest, I&quot;m always improving the
+              site and act on your feedback fast. It&quot;s most important that
+              you&quot;re happy with the site and I want you to keep coming back
+              to post here! This feedback box gets sent straight to my phone
+              wherever I am. -Pieter Levels, Founder of Remote OK
+            </p>
           </div>
 
-          <div className="relative bg-color-bg p-7 border border-solid border-stone-600 rounded-lg mt-7">
+          <div className="relative bg-color-bg p-7 border border-solid border-stone-600 rounded-lg mt-7 user-select-none">
             <div className="bg-color-bg text-[14px] uppercase font-extrabold px-2 absolute left-1/2 -translate-x-1/2 border border-solid border-stone-600 border-b-0 rounded-tr-md rounded-tl-md top-0 -mt-2">
               preview
             </div>
+
+            <div className="font-extrabold text-center mt-3">
+              Here&apos;s a preview of how your job post will look like
+            </div>
+
+            <div className="text-center mt-2">
+              Don&apos;t worry if it&apos;s not perfect the first time: your job
+              is fully editable for free after posting it!
+            </div>
+
+            <div className="p-1 border border-solid border-stone-700 rounded-md mt-10">
+              <div className="bg-yellow-200 text-black h-[88px] mt-2 sm:mx-2 sm:rounded-xl flex items-center cursor-pointer hover:opacity-80 transition-all ease-linear">
+                <div className="p-4 md:pe-2">
+                  <Image
+                    src="/assets/safetywing.png"
+                    alt="safetyLogo"
+                    className="w-16 aspect-square object-cover bg-cyan-900 rounded-full"
+                    width={60}
+                    height={60}
+                  />
+                </div>
+                <div className="w-[min(70%,448px)]">
+                  <div className="text-[clamp(14px,6vw,17px)] font-extrabold">
+                    Company
+                  </div>
+                  <div>Position</div>
+                  <div className="my-1">
+                    <span className="bg-[#424242] rounded-full text-xs px-2 py-1 me-2">
+                      🌎 Worldwide
+                    </span>
+                  </div>
+                </div>
+                <div className="w-[20%] hidden lg:flex items-center font-bold">
+                  <span className="bg-white hover:bg-transparent text-black hover:text-white border-2 border-white border-solid rounded-xl text-xs px-2 py-1 cursor-cell transition-all ease-linear">
+                    Worldwide
+                  </span>
+                </div>
+                <div className="ms-auto w-10 flex items-center p-2 me-3 md:me-0">
+                  <Image
+                    src="/assets/paper-clip.svg"
+                    alt="paper-clip"
+                    width={100}
+                    height={100}
+                    className="w-3 aspect-square invert me-1"
+                  />
+                  <div className="text-sm">7d</div>
+                </div>
+                <div className="p-4 hidden md:block w-48">
+                  <button className="w-40 bg-white text-black rounded-xl py-3 px-7 font-extrabold">
+                    Apply now
+                  </button>
+                </div>
+              </div>
+
+              <div className="p-10">
+                <div className="text-2xl">Company is hiring a</div>
+                <div className="mt-2 text-2xl font-bold">Remote Position</div>
+                <div className="mt-1 text-sm">
+                  The description of the job position will appear here. Write
+                  this in the &quot;Job Description&quot; box above.
+                </div>
+
+                <div className="text-center p-5 border border-solid border-stone-700 rounded-md mt-10">
+                  <div className="font-extrabold text-lg">
+                    How do you apply?
+                  </div>
+                  <div className="mt-2 mb-6 text-sm">
+                    Here the instructions go on how to apply for this job. Write
+                    them in the &quot;How to Apply?&quot; box.
+                  </div>
+                  <span className="opacity-40 text-sm font-extrabold border border-dashed border-stone-500 rounded-xl p-2">
+                    Apply for this job
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative bg-color-bg p-7 border border-solid border-stone-600 rounded-lg mt-7 mb-56">
+            <div className="bg-color-bg text-[14px] uppercase font-extrabold px-2 absolute left-1/2 -translate-x-1/2 border border-solid border-stone-600 border-b-0 rounded-tr-md rounded-tl-md top-0 -mt-2">
+              FROM OUR PARTNERS (OPENS IN NEW WINDOW)
+            </div>
+
+            <Link
+              href="https://safetywing.com/nomad-health?referenceID=24730000"
+              target="_blank"
+              className="bg-indigo-900 h-[88px] mt-1 sm:mx-2 sm:rounded-xl flex items-center cursor-pointer hover:opacity-80 transition-all ease-linear"
+            >
+              <div className="p-4 md:pe-2">
+                <Image
+                  src="/assets/safetywing.png"
+                  alt="safetyLogo"
+                  className="w-16 aspect-square object-cover bg-indigo-900 rounded-full"
+                  width={60}
+                  height={60}
+                />
+              </div>
+              <div className="max-w-4xl">
+                <div className="text-[clamp(14px,6vw,17px)] font-extrabold text-ellipsis line-clamp-1">
+                  The first health insurance for remote startups
+                </div>
+                <div className="text-ellipsis line-clamp-1">
+                  A fully equipped health insurance that works for all your
+                  global contractors and employees
+                </div>
+              </div>
+              <div className="ms-auto p-4 hidden md:block">
+                <button className="w-44 bg-teal-400 text-white rounded-xl py-3 px-7 font-extrabold">
+                  Sign up today
+                </button>
+              </div>
+            </Link>
           </div>
         </div>
 
-        <div className="w-[min(100%,500px)]"></div>
+        {/* <div className="">
+          <div className="p-7">
+            <div className="text-center">
+              Remote OK is{" "}
+              <Link
+                href="https://twitter.com/levelsio/status/1606328087569801223"
+                className="underline text-red-500 font-extrabold"
+              >
+                the most popular remote jobs board in the world
+              </Link>{" "}
+              trusted by millions of remote workers and leading remote companies
+              like
+            </div>
+          </div>
+        </div> */}
+      </div>
+
+      <div className="fixed bottom-0 w-full pt-7 px-7 pb-2 bg-color-bg border-t border-color-bg-hover border-solid">
+        <button className="block p-6 text-2xl w-full font-extrabold rounded-md text-white hover:text-red-500 bg-red-500 hover:bg-transparent border-2 border-solid border-red-500 hover:border-red-500 me-2 transition-all ease-linear">
+          Start hiring -- <span className="line-through">$644</span> $588
+        </button>
+
+        <p className="text-center text-xs opacity-60 mt-2">
+          We&apos;ll donate 1% to remove CO₂ from the atmosphere
+        </p>
       </div>
     </div>
   );

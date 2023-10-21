@@ -29,7 +29,7 @@ const Navbar = () => {
 
         <Link
           href="/hire-remotely"
-          className="p-2 font-extrabold rounded-xl hover:text-orange-500 bg-orange-600 hover:bg-transparent border-2 border-solid border-orange-600 hover:border-orange-500 me-2 transition-all ease-linear"
+          className="p-2 font-extrabold rounded-xl hover:text-red-500 bg-red-500 hover:bg-transparent border-2 border-solid border-red-500 hover:border-red-500 me-2 transition-all ease-linear"
         >
           Post <span className="hidden sm:contents">a remote</span> job
         </Link>

@@ -8,8 +8,8 @@ import Navbar from "@/components/home/Navbar";
 import SearchInput from "@/components/home/SearchInput";
 import JobList from "@/components/home/JobList";
 import FilterBar from "@/components/home/filter-bar/FilterBar";
-import CloneDetails from "@/components/main/CloneDetails";
-import SubscribeAlertBar from "@/components/main/SubscribeAlertBar";
+import CloneDetails from "@/components/home/overlays/CloneDetails";
+import SubscribeAlertBar from "@/components/home/overlays/SubscribeAlertBar";
 
 export default function Home() {
   return (
