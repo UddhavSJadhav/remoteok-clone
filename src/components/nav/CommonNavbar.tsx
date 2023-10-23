@@ -1,21 +1,42 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 
 import NavMenu from "./NavMenu";
 import NavMenuDropdown from "./NavMenuDropdown";
 
 const CommonNavbar = () => {
+  const dropdownRef = useRef<HTMLInputElement | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const onNavMenuClick = () => setIsOpen(true);
-  const onNavClose = () => setIsOpen(false);
+  const onNavMenuClick = () =>
+    setIsOpen((prev) => {
+      if (!prev) dropdownRef?.current?.focus();
+      return !prev;
+    });
+  const onNavClose = (e: any) => {
+    if (
+      e &&
+      e?.relatedTarget &&
+      e?.relatedTarget?.id &&
+      e?.relatedTarget?.id === "nav-logo"
+    )
+      return;
+    if (e && e?.relatedTarget && e?.currentTarget?.contains(e.relatedTarget))
+      return;
+    setIsOpen(false);
+  };
 
   return (
     <nav className="relative bg-transparent text-center px-1 py-3 flex items-center">
-      <NavMenu onClick={onNavMenuClick} onBlur={onNavClose} />
-      <div className="absolute z-10 w-[min(80vw,500px)] top-16">
+      <NavMenu onClick={onNavMenuClick} />
+      <div
+        className="absolute z-10 w-[min(80vw,500px)] top-16"
+        ref={dropdownRef}
+        tabIndex={0}
+        onBlur={onNavClose}
+      >
         {isOpen && <NavMenuDropdown />}
       </div>
       <div className="flex mt-1 me-1 sm:me-3 ms-auto">

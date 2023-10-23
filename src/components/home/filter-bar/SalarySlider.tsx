@@ -11,7 +11,7 @@ const SalarySlider = () => {
         max={25}
         className="w-full outline-none cursor-cell m-[2px]"
         onMouseDown={(e) => {
-          e.stopPropagation();
+          e.preventDefault();
         }}
       />
     </div>

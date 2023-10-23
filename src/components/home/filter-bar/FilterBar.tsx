@@ -19,19 +19,33 @@ interface DropDownStyle {
 const FilterBar = () => {
   const dropdownRef = useRef<HTMLInputElement | null>(null);
   const [dropdownStyle, setDropdownStyle] = useState<DropDownStyle>({
-    top: "45px",
+    top: "50px",
     left: "auto",
     right: "auto",
   });
   const [dropdownType, setDropdownType] = useState<string>("");
 
-  const closeDropdown = () => {
-    if (dropdownRef.current?.contains(document.activeElement)) return;
+  const closeDropdown = (e: any) => {
+    if (
+      e &&
+      e?.relatedTarget &&
+      e?.relatedTarget?.id &&
+      (e?.relatedTarget?.id === "filter-input-" + dropdownType ||
+        e?.relatedTarget?.id === "nav-logo")
+    )
+      return;
+    if (e && e?.relatedTarget && e?.currentTarget?.contains(e.relatedTarget))
+      return;
     setDropdownType("");
   };
 
   const onInputFieldClick = (e: any, type: string) => {
-    if (type === dropdownType) return;
+    if (
+      type === dropdownType &&
+      dropdownType !== "search" &&
+      dropdownType !== "location"
+    )
+      return setDropdownType("");
     setDropdownType(type);
 
     if (type !== "search" && type !== "location") dropdownRef.current?.focus();
