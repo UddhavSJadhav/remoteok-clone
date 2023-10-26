@@ -17,7 +17,7 @@ const CustomCheckBox = ({ id, label, xMoreViews }: CustomCheckBoxProps) => {
       <label htmlFor={id}>
         {label}{" "}
         {xMoreViews && (
-          <span className="ms-2 border border-solid border-red-500 uppercase text-red-500 text-xs font-bold rounded-md p-1">
+          <span className="inline-block ms-2 border border-solid border-red-500 uppercase text-red-500 text-xs font-bold rounded-md p-1">
             {xMoreViews}x more views
           </span>
         )}

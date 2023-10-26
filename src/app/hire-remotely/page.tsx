@@ -5,9 +5,11 @@ import Image from "next/image";
 import CustomInput from "@/components/common/CustomInput";
 import CustomSelect from "@/components/common/CustomSelect";
 import CustomCheckBox from "@/components/hire-remotely/CustomCheckBox";
+import CustomTextArea from "@/components/common/CustomTextArea";
+import CustomSelectMultiple from "@/components/common/CustomSelectMultiple";
+import RichTextEditor from "@/components/rich-text-editor/RichTextEditor";
 
 import { jobTypeList, primaryTagList } from "@/data";
-import CustomTextArea from "@/components/common/CustomTextArea";
 
 const HireRemotely = () => {
   return (
@@ -41,19 +43,21 @@ const HireRemotely = () => {
 
       <div className="bg-red-500 text-center font-extrabold px-2 py-4 text-white">
         ⛳️ Save up to 50% when buying multiple job posts —{" "}
-        <Link href="/buy-bundle" className="underline">
+        <Link href="/buy-bundle" className="underline inline-block">
           Buy a bundle →
         </Link>
       </div>
 
       <div className="flex w-full">
-        <div className="flex-grow p-7 bg-[#181818]">
-          <div className="bg-color-bg text-center p-7 border border-solid border-stone-600 rounded-lg mb-7">
-            ✨ We&apos;ve prefilled this page with some info that you entered
-            before. If you don&apos;t like this{" "}
+        <div className="flex-grow p-7 bg-[#181818] pb-56">
+          <div className="flex items-center justify-center flex-wrap bg-color-bg text-center p-7 border border-solid border-stone-600 rounded-lg mb-7">
+            <div className="me-2">
+              ✨ We&apos;ve prefilled this page with some info that you entered
+              before. If you don&apos;t like this
+            </div>
             <Link
               href="/hire-remotely"
-              className="text-white ms-1 p-2 font-extrabold rounded-xl hover:text-red-500 bg-red-500 hover:bg-transparent border-2 border-solid border-red-500 hover:border-red-500 me-2 transition-all ease-linear"
+              className="block text-white ms-1 p-2 font-extrabold rounded-xl hover:text-red-500 bg-red-500 hover:bg-transparent border-2 border-solid border-red-500 hover:border-red-500 me-2 transition-all ease-linear"
             >
               Start Over
             </Link>
@@ -110,11 +114,12 @@ const HireRemotely = () => {
               etc.
             </div>
 
-            <CustomInput
+            <CustomSelectMultiple
               id="tags_keywords_or_stacks"
               placeholder="Type a tag or keyword to search and add it"
               label="tags, keywords or stacks"
               mandatory={true}
+              list={[]}
             />
 
             <div className="text-xs text-[#888] mt-1 mb-4">
@@ -125,11 +130,12 @@ const HireRemotely = () => {
               automatically after you post/edit to supplement.
             </div>
 
-            <CustomInput
+            <CustomSelectMultiple
               id="job_is_restricted_to_locations"
               placeholder="Type a location this job is restricted to like Worldwide, Europe"
               label="job is restricted to locations?"
               mandatory={true}
+              list={[]}
             />
 
             <div className="text-xs text-[#888] mt-1">
@@ -204,13 +210,13 @@ const HireRemotely = () => {
               label="Geolock your post for people only in the location it's restricted to above and block applicants from elsewhere (+$89)"
             />
 
-            <div className="flex items-center">
-              <span> Expected views</span>
-              <span className="ms-4 w-[min(80vw,200px)] p-[6px] bg-[#181818] rounded-md shadow-[0_0_0_1px_rgba(255,255,255,0.1)] hover:shadow-[0_0_0_5px_rgba(255,75,66,0.5)]">
+            <div className="flex flex-wrap items-center">
+              <span className="mt-1">Expected views</span>
+              <span className="mt-1 ms-4 me-4 w-[min(80vw,200px)] p-[6px] bg-[#181818] rounded-md shadow-[0_0_0_1px_rgba(255,255,255,0.1)] hover:shadow-[0_0_0_5px_rgba(255,75,66,0.5)]">
                 1122
               </span>
-              <span className="ms-4">Expected clicks</span>
-              <span className="ms-4 w-[min(80vw,200px)] p-[6px] bg-[#181818] rounded-md shadow-[0_0_0_1px_rgba(255,255,255,0.1)] hover:shadow-[0_0_0_5px_rgba(255,75,66,0.5)]">
+              <span className="mt-1">Expected clicks</span>
+              <span className="mt-1 ms-4 w-[min(80vw,200px)] p-[6px] bg-[#181818] rounded-md shadow-[0_0_0_1px_rgba(255,255,255,0.1)] hover:shadow-[0_0_0_5px_rgba(255,75,66,0.5)]">
                 120
               </span>
             </div>
@@ -235,6 +241,117 @@ const HireRemotely = () => {
             <div className="bg-color-bg text-[14px] uppercase font-extrabold px-2 absolute left-1/2 -translate-x-1/2 border border-solid border-stone-600 border-b-0 rounded-tr-md rounded-tl-md top-0 -mt-2">
               job details
             </div>
+
+            <label
+              htmlFor="company_logo"
+              className="text-sm font-extrabold mb-2"
+            >
+              COMPANY LOGO (.JPG OR .PNG, SQUARE OR ROUND)
+            </label>
+            <div className="relative w-32 aspect-square border border-solid border-stone-700 rounded-full mb-4">
+              <p className="absolute w-full top-1/2 -translate-y-1/2 bg-slate-200 text-center rounded-md py-1 text-stone-400">
+                💾 Upload
+              </p>
+              <input
+                type="file"
+                className="opacity-0 w-full aspect-square cursor-pointer"
+                id="company_logo"
+                accept=".jpg,.png"
+              />
+            </div>
+
+            <div className="user-select-none cursor-pointer mb-2">
+              <input
+                id="brand_color"
+                type="checkbox"
+                className="relative w-6 h-6 bg-color-bg appearance-none checked:outline-none checked:border-transparent border border-solid border-stone-600 rounded-md after:text-2xl checked:after:content-['✅'] after:absolute after:-left-1 after:-top-1 after:outline-none me-2 -mb-1"
+              />
+              <label htmlFor="brand_color">
+                Highlight with your company&apos;s 🌈 brand color (+$499) 👉
+                <input type="color" className="rounded-sm mx-2 h-6 px-1" />
+                <span className="inline-block ms-2 border border-solid border-red-500 uppercase text-red-500 text-xs font-bold rounded-md p-1">
+                  3x more views
+                </span>
+              </label>
+            </div>
+
+            <div>
+              <label className="text-sm font-extrabold mb-2">
+                ANNUAL SALARY OR COMPENSATION IN USD (GROSS, ANNUALIZED,
+                FULL-TIME-EQUIVALENT (FTE) IN USD EQUIVALENT)*
+              </label>
+              <div className="flex flex-wrap items-center">
+                <div className="w-1/3">
+                  <CustomInput
+                    id="minimum_per_year"
+                    placeholder="Minimum per year"
+                  />
+                </div>
+                <span className="mx-4">--</span>
+                <div className="w-1/3">
+                  <CustomInput
+                    id="maximum_per_year"
+                    placeholder="Maxiimum per year"
+                  />
+                </div>
+              </div>
+
+              <p className="text-xs text-stone-400 mt-1 mb-4">
+                <span className="underline bg-yellow-200 text-black">
+                  It&apos;s illegal to not share salary range on job posts since
+                  2021.
+                </span>{" "}
+                Posts without salary will automatically show an estimate of
+                salary based on similar jobs. Remote job postings are legally
+                required to show a salary compensation range in many U.S. states
+                and countries. Google does NOT index jobs without salary data.
+                If it&apos;s a short-term gig, use the annual full-time
+                equivalent. For example, if it&apos;s a 2-week project for
+                $2,000, the annual equivalent would be $2,000 / 2 weeks * 52
+                weeks = $52,000. Please use USD equivalent. We don&apos;t have
+                currency built-in yet and we&apos;d like to use this salary data
+                to show salary trends in remote work.{" "}
+                <Link
+                  href="https://twitter.com/levelsio/status/1364288537030459400"
+                  target="_blank"
+                  className="font-extrabold underline"
+                >
+                  Remote OK is a supporter of #OpenSalaries.
+                </Link>
+              </p>
+            </div>
+
+            <RichTextEditor label="job description" mandatory={true} />
+
+            <RichTextEditor label="how to apply" />
+
+            <CustomInput
+              id="apply_url"
+              label="apply url"
+              placeholder="https://"
+              mandatory={true}
+            />
+            <p className="text-xs opacity-60 mt-2 mb-3">
+              Apply URLs with a form an applicant can fill out generally receive
+              a lot more applicants than having people apply by email (below). A
+              good platform to have applicants apply on is Lever (not
+              affiliated).
+            </p>
+
+            <p className="text-center">or</p>
+
+            <CustomInput
+              id="apply_email_address"
+              label="apply email address"
+              placeholder="Apply email address"
+              mandatory={true}
+            />
+            <p className="text-xs opacity-60 mt-2">
+              This email is public (!), the [ Apply ] button links to it if you
+              do not specify an Apply URL above. We recommend using an Apply
+              URL, instead of an Apply Email Address, because you might get a
+              lot of spam/automated applicants by email.
+            </p>
           </div>
 
           <div className="relative bg-color-bg p-7 border border-solid border-stone-600 rounded-lg mt-7">
@@ -411,7 +528,7 @@ const HireRemotely = () => {
             </div>
           </div>
 
-          <div className="relative bg-color-bg p-7 border border-solid border-stone-600 rounded-lg mt-7 mb-56">
+          <div className="hidden lg:block relative bg-color-bg p-7 border border-solid border-stone-600 rounded-lg mt-7">
             <div className="bg-color-bg text-[14px] uppercase font-extrabold px-2 absolute left-1/2 -translate-x-1/2 border border-solid border-stone-600 border-b-0 rounded-tr-md rounded-tl-md top-0 -mt-2">
               FROM OUR PARTNERS (OPENS IN NEW WINDOW)
             </div>

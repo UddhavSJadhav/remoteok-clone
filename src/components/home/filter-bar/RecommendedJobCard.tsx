@@ -1,4 +1,3 @@
-import ToolTip from "@/components/common/ToolTip";
 import Image from "next/image";
 import React, { useState } from "react";
 

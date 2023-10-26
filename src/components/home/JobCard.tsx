@@ -33,7 +33,7 @@ const JobCard = ({ details }: { details?: JobData }) => {
         backgroundColor: details?.backgroundColor || "#2c2c2c",
         color: details?.textColor || "white",
       }}
-      className="h-[88px] mt-2 sm:mx-2 sm:rounded-xl flex items-center cursor-pointer hover:opacity-80 transition-all ease-linear"
+      className="group h-[88px] mt-2 sm:mx-2 sm:rounded-xl flex items-center cursor-pointer hover:opacity-80 transition-all ease-linear"
     >
       <div className="p-4 md:pe-2">
         <Image
@@ -77,7 +77,7 @@ const JobCard = ({ details }: { details?: JobData }) => {
         <div className="text-sm">7d</div>
       </div>
       <div className="p-4 hidden md:block w-48">
-        <button className="w-40 bg-white text-black rounded-xl py-3 px-7 font-extrabold">
+        <button className="hidden group-hover:block w-40 bg-white text-black rounded-xl py-3 px-7 font-extrabold">
           Apply now
         </button>
       </div>

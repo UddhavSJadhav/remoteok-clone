@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import FilterInput from "./FilterInput";
 import NavMenu from "../../nav/NavMenu";
@@ -24,6 +24,7 @@ const FilterBar = () => {
     right: "auto",
   });
   const [dropdownType, setDropdownType] = useState<string>("");
+  const [isSticky, setIsSticky] = useState<boolean>(false);
 
   const closeDropdown = (e: any) => {
     if (
@@ -99,9 +100,32 @@ const FilterBar = () => {
     }));
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check the scroll position and set the sticky state
+      if (window.scrollY > 300) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    // Attach the scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <section className="relative">
-      <div className="max-w-[1100px] mx-auto overflow-x-auto">
+    <section
+      className={`${
+        isSticky ? "sticky" : "relative"
+      } bg-color-bg bg-opacity-[0.98] top-0 pt-1`}
+    >
+      <div className="relative max-w-[1100px] mx-auto overflow-x-auto">
         <div className="flex items-start">
           <NavMenu onClick={onInputFieldClick} />
           <div>

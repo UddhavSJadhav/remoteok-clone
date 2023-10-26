@@ -4,6 +4,10 @@ const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
+      screens: {
+        "2lg": "1100px",
+        "1.5lg": "1425px",
+      },
       fontFamily: {
         pacifico: "var(--font-pacifico)",
       },
