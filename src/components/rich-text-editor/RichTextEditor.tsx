@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { useEditor, EditorContent } from "@tiptap/react";
 import Link from "@tiptap/extension-link";
@@ -7,12 +8,17 @@ import StarterKit from "@tiptap/starter-kit";
 import Heading from "@tiptap/extension-heading";
 import { mergeAttributes } from "@tiptap/core";
 
+import LinkModel from "./LinkModel";
+
 interface TiptapProps {
   label: string;
   mandatory?: boolean;
 }
 
 const Tiptap = ({ label, mandatory = false }: TiptapProps) => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [dataToPass, setDataToPass] = useState<object>({});
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -31,7 +37,9 @@ const Tiptap = ({ label, mandatory = false }: TiptapProps) => {
         HTMLAttributes: {
           rel: "noopener noreferrer",
           target: "_blank",
+          class: "underline cursor-pointer",
         },
+        openOnClick: false,
       }),
       Heading.extend({
         levels: [1, 2],
@@ -60,6 +68,79 @@ const Tiptap = ({ label, mandatory = false }: TiptapProps) => {
       },
     },
   });
+
+  const insertEditLink = () => {
+    if (editor?.isActive("link")) {
+      const url = editor?.getAttributes("link").href;
+      const link_title = editor?.getAttributes("link")?.title;
+
+      editor
+        ?.chain()
+        .focus()
+        .extendMarkRange("link")
+        .selectNodeBackward()
+        .selectNodeForward()
+        .run();
+
+      const from = editor?.state.selection.$from.pos;
+      const to = editor?.state.selection.$to.pos;
+
+      const text_to_display = editor?.state.doc.textBetween(
+        Number(from),
+        Number(to)
+      );
+
+      setDataToPass({ url, link_title, text_to_display });
+    } else {
+      if (editor?.state.selection.empty) {
+        setDataToPass({});
+      } else {
+        const from = editor?.state.selection.$from.pos;
+        const to = editor?.state.selection.$to.pos;
+
+        const text_to_display = editor?.state.doc.textBetween(
+          Number(from),
+          Number(to)
+        );
+
+        setDataToPass({ text_to_display });
+      }
+    }
+    setIsVisible(true);
+  };
+
+  const onLinkSave = (e: any) => {
+    e.preventDefault();
+    const url = e.target.url.value;
+    const textToDisplay = e.target.text_to_display.value;
+    const linkTitle = e.target.link_title.value;
+    const hiddenFlag = e.target.hiddenFlag;
+
+    if (!url.trim()) return editor?.chain().focus().unsetLink().run();
+
+    if (hiddenFlag) {
+      editor
+        ?.chain()
+        .focus()
+        .extendMarkRange("link", { title: linkTitle })
+        .setLink({ href: url })
+        .run();
+    } else {
+      editor
+        ?.chain()
+        .focus()
+        .insertContent(textToDisplay || url)
+        .setTextSelection({
+          from: editor.state.selection.$from.pos,
+          to: editor.state.selection.$from.pos + textToDisplay.length + 1,
+        })
+        .extendMarkRange("link", { title: linkTitle })
+        .setLink({ href: url })
+        .run();
+    }
+
+    setIsVisible(false);
+  };
 
   return (
     <>
@@ -235,14 +316,18 @@ const Tiptap = ({ label, mandatory = false }: TiptapProps) => {
           <span className="h-7 border-r border-solid border-stone-700 mx-2"></span> */}
 
           <button
-            className="outline-none rounded-sm hover:bg-white hover:text-black"
-            onClick={() => {}}
+            className={`outline-none rounded-sm ${
+              editor?.isActive("link") ? "bg-white text-black" : ""
+            } hover:bg-white hover:text-black`}
+            onClick={() => insertEditLink()}
             title="Insert/edit link"
           >
             <Image
               src="/assets/link.png"
               alt="link"
-              className="w-8 aspect-square object-cover p-[6px] hover:invert disabled:cursor-not-allowed"
+              className={`w-8 aspect-square object-cover p-[6px] ${
+                editor?.isActive("link") ? "invert" : "hover:invert"
+              } disabled:cursor-not-allowed`}
               width={60}
               height={60}
             />
@@ -250,6 +335,13 @@ const Tiptap = ({ label, mandatory = false }: TiptapProps) => {
         </div>
         <EditorContent editor={editor} />
       </div>
+
+      <LinkModel
+        isVisible={isVisible}
+        closeModel={() => setIsVisible(false)}
+        onSave={onLinkSave}
+        defaultData={dataToPass}
+      />
     </>
   );
 };

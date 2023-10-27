@@ -32,6 +32,14 @@ const config: Config = {
       minHeight: {
         "with-nav": "calc(100vh - 64px)",
       },
+      keyframes: {
+        slideIn: {
+          to: { transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        "slide-in": "slideIn 0.3s ease-out forwards",
+      },
     },
   },
   plugins: [],

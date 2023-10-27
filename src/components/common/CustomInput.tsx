@@ -6,6 +6,8 @@ interface CustomInputProps {
   placeholder?: string;
   label?: string | number;
   mandatory?: boolean;
+  size?: "sm" | "md" | "lg";
+  defaultValue?: string | number;
 }
 
 const CustomInput = ({
@@ -14,6 +16,8 @@ const CustomInput = ({
   type = "text",
   label,
   mandatory = false,
+  size = "md",
+  defaultValue = "",
 }: CustomInputProps) => {
   return (
     <>
@@ -27,8 +31,9 @@ const CustomInput = ({
         id={id}
         type={type}
         placeholder={placeholder}
-        className="block w-full outline-none p-[6px] bg-[#181818] rounded-md shadow-[0_0_0_1px_rgba(255,255,255,0.1)] focus:shadow-[0_0_0_5px_rgba(255,75,66,0.5)]"
+        className={`block w-full outline-none p-[6px] bg-[#181818] rounded-md shadow-[0_0_0_1px_rgba(255,255,255,0.1)] focus:shadow-[0_0_0_5px_rgba(255,75,66,0.5)]`}
         autoComplete="off"
+        defaultValue={defaultValue}
       />
     </>
   );
