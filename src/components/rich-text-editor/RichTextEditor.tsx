@@ -13,9 +13,10 @@ import LinkModel from "./LinkModel";
 interface TiptapProps {
   label: string;
   mandatory?: boolean;
+  size?: "sm" | "md" | "lg";
 }
 
-const Tiptap = ({ label, mandatory = false }: TiptapProps) => {
+const Tiptap = ({ label, mandatory = false, size = "md" }: TiptapProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [dataToPass, setDataToPass] = useState<object>({});
 
@@ -40,6 +41,7 @@ const Tiptap = ({ label, mandatory = false }: TiptapProps) => {
           class: "underline cursor-pointer",
         },
         openOnClick: false,
+        autolink: false,
       }),
       Heading.extend({
         levels: [1, 2],
@@ -64,7 +66,13 @@ const Tiptap = ({ label, mandatory = false }: TiptapProps) => {
     content: "",
     editorProps: {
       attributes: {
-        class: "outline-none p-4 min-h-[400px]",
+        class: `outline-none p-4 ${
+          size === "sm"
+            ? "min-h-[200px]"
+            : size === "lg"
+            ? "min-h-[300px]"
+            : "min-h-[400px]"
+        }`,
       },
     },
   });
@@ -116,7 +124,10 @@ const Tiptap = ({ label, mandatory = false }: TiptapProps) => {
     const linkTitle = e.target.link_title.value;
     const hiddenFlag = e.target.hiddenFlag;
 
-    if (!url.trim()) return editor?.chain().focus().unsetLink().run();
+    if (!url.trim()) {
+      e?.target?.reset();
+      return editor?.chain().focus().unsetLink().run();
+    }
 
     if (hiddenFlag) {
       editor
@@ -139,6 +150,7 @@ const Tiptap = ({ label, mandatory = false }: TiptapProps) => {
         .run();
     }
 
+    e?.target?.reset();
     setIsVisible(false);
   };
 
@@ -281,10 +293,9 @@ const Tiptap = ({ label, mandatory = false }: TiptapProps) => {
 
           <span className="h-7 border-r border-solid border-stone-700 mx-2"></span>
 
-          {/*Add Indent*/}
           {/* <button
             className="outline-none rounded-sm hover:bg-white hover:text-black"
-            onClick={() => editor?.chain().focus()}
+            onClick={() => }
             disabled={!editor?.can().chain().focus().undo().run()}
             title="Undo"
           >
@@ -295,10 +306,9 @@ const Tiptap = ({ label, mandatory = false }: TiptapProps) => {
               width={60}
               height={60}
             />
-            </button>*/}
+          </button>
 
-          {/*Add Indent*/}
-          {/*<button
+          <button
             className="outline-none rounded-sm hover:bg-white hover:text-black"
             onClick={() => editor?.chain().focus().redo().run()}
             disabled={!editor?.can().chain().focus().redo().run()}

@@ -9,7 +9,7 @@ import CustomTextArea from "@/components/common/CustomTextArea";
 import CustomSelectMultiple from "@/components/common/CustomSelectMultiple";
 import RichTextEditor from "@/components/rich-text-editor/RichTextEditor";
 
-import { jobTypeList, primaryTagList } from "@/data";
+import { benefitsList, jobTypeList, primaryTagList } from "@/data";
 
 const HireRemotely = () => {
   return (
@@ -323,7 +323,21 @@ const HireRemotely = () => {
 
             <RichTextEditor label="job description" mandatory={true} />
 
-            <RichTextEditor label="how to apply" />
+            <div className="my-3">
+              <p className="text-sm font-extrabold uppercase">benefits</p>
+              <div className="flex flex-wrap">
+                {benefitsList.map((e) => (
+                  <div
+                    key={e.value}
+                    className="py-[7px] px-[14px] opacity-75 hover:opacity-100 hover:text-white cursor-pointer bg-[#181818] hover:bg-red-500 border border-solid border-stone-700 hover:border-red-500 rounded-xl m-1 saturate-0 hover:filter-none"
+                  >
+                    {e.label}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <RichTextEditor label="how to apply" size="sm" />
 
             <CustomInput
               id="apply_url"

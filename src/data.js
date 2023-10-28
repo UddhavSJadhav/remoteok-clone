@@ -114,3 +114,38 @@ export const primaryTagList = [
     value: "other",
   },
 ];
+
+export const benefitsList = [
+  {
+    value: "💰 401(k)",
+    label: "💰 401(k)",
+  },
+  {
+    value: "🌎 Distributed team",
+    label: "🌎 Distributed team",
+  },
+  {
+    value: "⏰ Async",
+    label: "⏰ Async",
+  },
+  {
+    value: "🤓 Vision insurance",
+    label: "🤓 Vision insurance",
+  },
+  {
+    value: "🦷 Dental insurance",
+    label: "🦷 Dental insurance",
+  },
+  {
+    value: "🚑 Medical insurance",
+    label: "🚑 Medical insurance",
+  },
+  {
+    value: "🚢 Unlimited vacation",
+    label: "🚢 Unlimited vacation",
+  },
+  {
+    value: "🚢 Paid time off",
+    label: "🚢 Paid time off",
+  },
+];
