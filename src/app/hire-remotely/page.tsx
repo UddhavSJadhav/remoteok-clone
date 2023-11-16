@@ -14,27 +14,29 @@ import { benefitsList, jobTypeList, primaryTagList } from "@/data";
 const HireRemotely = () => {
   return (
     <div className="text-[#bfbfbf]">
-      <nav className="p-4 flex justify-between items-center border-b border-color-bg-hover border-solid">
-        <Link href="/" className="hover:opacity-80 user-select-none block">
-          <span className="ps-1 pe-2 font-pacifico text-4xl">remote</span>
-          <span className="px-1 text-[28px] font-extrabold border-s-4 border-[#bfbfbf] leading-5">
-            OK
-          </span>
-          <span className="text-xs ms-1">®</span>
-        </Link>
-        <Link
-          href="/"
-          className="hover:opacity-80 user-select-none hidden md:block px-1 text-3xl font-extrabold leading-5"
-        >
-          Hire Remotely
-        </Link>
-        <Link
-          href="/buy-bundle"
-          className="block p-2 font-extrabold rounded-xl text-white hover:text-red-500 bg-red-500 hover:bg-transparent border-2 border-solid border-red-500 hover:border-red-500 me-2 transition-all ease-linear"
-        >
-          Buy a bundle →
-        </Link>
-      </nav>
+      <header>
+        <nav className="p-4 flex justify-between items-center border-b border-color-bg-hover border-solid">
+          <Link href="/" className="hover:opacity-80 user-select-none block">
+            <span className="ps-1 pe-2 font-pacifico text-4xl">remote</span>
+            <span className="px-1 text-[28px] font-extrabold border-s-4 border-[#bfbfbf] leading-5">
+              OK
+            </span>
+            <span className="text-xs ms-1">®</span>
+          </Link>
+          <Link
+            href="/"
+            className="hover:opacity-80 user-select-none hidden md:block px-1 text-3xl font-extrabold leading-5"
+          >
+            Hire Remotely
+          </Link>
+          <Link
+            href="/buy-bundle"
+            className="block p-2 font-extrabold rounded-xl text-white hover:text-red-500 bg-red-500 hover:bg-transparent border-2 border-solid border-red-500 hover:border-red-500 me-2 transition-all ease-linear"
+          >
+            Buy a bundle →
+          </Link>
+        </nav>
+      </header>
 
       <div className="font-extrabold text-center p-2">
         🏷 A discount of 10% with code 044025DC9012CE2DA45113CB22154EE0 is
@@ -549,6 +551,7 @@ const HireRemotely = () => {
 
             <Link
               href="https://safetywing.com/nomad-health?referenceID=24730000"
+              rel="noopener noreferrer"
               target="_blank"
               className="bg-indigo-900 h-[88px] mt-1 sm:mx-2 sm:rounded-xl flex items-center cursor-pointer hover:opacity-80 transition-all ease-linear"
             >

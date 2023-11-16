@@ -8,27 +8,29 @@ import CustomTextArea from "@/components/common/CustomTextArea";
 const BuyBundle = () => {
   return (
     <div className="text-[#bfbfbf]">
-      <nav className="p-4 flex justify-between items-center border-b border-color-bg-hover border-solid">
-        <Link href="/" className="hover:opacity-80 user-select-none block">
-          <span className="ps-1 pe-2 font-pacifico text-4xl">remote</span>
-          <span className="px-1 text-[28px] font-extrabold border-s-4 border-[#bfbfbf] leading-5">
-            OK
-          </span>
-          <span className="text-xs ms-1">®</span>
-        </Link>
-        <Link
-          href="/"
-          className="hover:opacity-80 user-select-none hidden md:block px-1 text-3xl font-extrabold leading-5"
-        >
-          Buy a jobs bundle
-        </Link>
-        <Link
-          href="/hire-remotely"
-          className="block p-2 font-extrabold rounded-xl text-white hover:text-red-500 bg-red-500 hover:bg-transparent border-2 border-solid border-red-500 hover:border-red-500 me-2 transition-all ease-linear"
-        >
-          Post a single job
-        </Link>
-      </nav>
+      <header>
+        <nav className="p-4 flex justify-between items-center border-b border-color-bg-hover border-solid">
+          <Link href="/" className="hover:opacity-80 user-select-none block">
+            <span className="ps-1 pe-2 font-pacifico text-4xl">remote</span>
+            <span className="px-1 text-[28px] font-extrabold border-s-4 border-[#bfbfbf] leading-5">
+              OK
+            </span>
+            <span className="text-xs ms-1">®</span>
+          </Link>
+          <Link
+            href="/"
+            className="hover:opacity-80 user-select-none hidden md:block px-1 text-3xl font-extrabold leading-5"
+          >
+            Buy a jobs bundle
+          </Link>
+          <Link
+            href="/hire-remotely"
+            className="block p-2 font-extrabold rounded-xl text-white hover:text-red-500 bg-red-500 hover:bg-transparent border-2 border-solid border-red-500 hover:border-red-500 me-2 transition-all ease-linear"
+          >
+            Post a single job
+          </Link>
+        </nav>
+      </header>
 
       <div className="p-7 pb-72 bg-[#181818]">
         <div className="relative bg-color-bg p-7 border border-solid border-stone-600 rounded-lg mt-7 text-center">
